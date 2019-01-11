@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use EasyWeChat\Factory;
 
 class WeChatController extends Controller
 {
-  public function checkSignature()
+  public function serve()
   {
-    $signature = \request("signature");
-    $timestamp = \request('timestamp');
-    $nonce = \request('nonce');
-    $echostr = \request('echostr');
-    $token = env('WECHAT_TOKEN', 'nitaishuaile');
+    $config = [
+      'app_id' => env('WECHAT_OFFICIAL_ACCOUNT_APPID'),
+      'secret' => env('WECHAT_OFFICIAL_ACCOUNT_SECRET'),
+      'token' => env('WECHAT_OFFICIAL_ACCOUNT_TOKEN'),
+      'response_type' => 'array',
+    ];
 
-    $tmpArr = array($timestamp, $nonce, $token);
-    sort($tmpArr, SORT_STRING);
-    $tmpStr = implode($tmpArr);
-    $tmpStr = sha1($tmpStr);
+    $app = Factory::officialAccount($config);
 
-    if ($signature == $tmpStr) {
-      return $echostr;
-    }
-    return 0;
+    $response = $app->server->serve();
+
+    return $response;
   }
 }
