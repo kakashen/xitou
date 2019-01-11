@@ -16,3 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('/wxmsg', 'WeChatController@checkSignature');
+
+Route::prefix('wechat')->group(function () {
+  Route::get('serve', 'WeChatController@serve');
+
+});
