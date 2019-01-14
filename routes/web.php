@@ -12,12 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
 Route::get('/wxmsg', 'WeChatController@checkSignature');
 
-Route::prefix('wechat')->group(function () {
-  Route::get('serve', 'WeChatController@serve');
-
-});
+Route::any('/wechat', 'WeChatController@serve');

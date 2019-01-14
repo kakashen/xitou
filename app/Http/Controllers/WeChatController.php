@@ -3,22 +3,21 @@
 namespace App\Http\Controllers;
 
 use EasyWeChat\Factory;
+use Log;
 
 class WeChatController extends Controller
 {
   public function serve()
   {
-    $config = [
-      'app_id' => env('WECHAT_OFFICIAL_ACCOUNT_APPID'),
-      'secret' => env('WECHAT_OFFICIAL_ACCOUNT_SECRET'),
-      'token' => env('WECHAT_OFFICIAL_ACCOUNT_TOKEN'),
-      'response_type' => 'array',
-    ];
+    Log::info('request arrived.'); # 注意：Log 为 Laravel 组件，所以它记的日志去 Laravel 日志看，而不是 EasyWeChat 日志
 
-    $app = Factory::officialAccount($config);
+    $app = app('wechat.official_account');
+    $app->server->push(function ($message) {
+      Log::info($message);
+      return "欢迎关注 卡神！";
+    });
 
     $response = $app->server->serve();
-
     return $response;
   }
 }

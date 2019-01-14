@@ -9,9 +9,9 @@
 use EasyWeChat\Factory;
 
 $config = [
-  'app_id' => env('WECHAT_OFFICIAL_ACCOUNT_APPID'),
-  'secret' => env('WECHAT_OFFICIAL_ACCOUNT_SECRET'),
-  'token' => env('WECHAT_OFFICIAL_ACCOUNT_TOKEN'),
+  'app_id' => 'wx09b737d8939e9698',
+  'secret' => '9786277ef66c542fb79eb588fdfcf110',
+  'token' => 'nitaishuaile',
   'response_type' => 'array',
 ];
 
@@ -19,4 +19,4 @@ $app = Factory::officialAccount($config);
 
 $response = $app->server->serve();
 
-return $response;
+echo 123;
