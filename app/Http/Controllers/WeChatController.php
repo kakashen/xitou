@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use EasyWeChat\Factory;
 use Log;
 
 class WeChatController extends Controller
@@ -13,7 +12,6 @@ class WeChatController extends Controller
 
     $app = app('wechat.official_account');
     $app->server->push(function ($message) {
-      Log::info($message);
       return "欢迎关注 卡神！";
     });
 
