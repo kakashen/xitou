@@ -21,6 +21,10 @@ class QueryImgList extends Seeder
       foreach ($srcs as $key => $src) {
         $src = "http://" . substr($src, 2);
 
+        // 查询是否保存过
+        $count = DB::table('img_lists')->where('qiu_url', $src)->count();
+        if ($count) continue;
+
         if (!$finename = $this->file_exists_S3($src)) continue;
         $app = app('wechat.official_account');
         $result = $app->material->uploadImage($finename); // {"errcode":40007,"errmsg":"invalid media_id"}
@@ -32,10 +36,7 @@ class QueryImgList extends Seeder
         if (!isset($result['media_id'])) continue;
 
         // 保存数据
-        DB::table('img_lists')->updateOrInsert(
-          ['qiu_url' => $src],
-          ['qiu_url' => $src, 'media_id' => $result['media_id'], 'url' => $result['url']]
-        );
+        DB::table('img_lists')->insert(['qiu_url' => $src, 'media_id' => $result['media_id'], 'url' => $result['url']]);
       }
     }
   }

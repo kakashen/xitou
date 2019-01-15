@@ -24,7 +24,7 @@ class WeChatController extends Controller
           if ($message['Content'] == '图片') {
             $count = DB::table('img_lists')->count();
             $data = DB::table('img_lists')->find(rand(1, $count));
-            $mediaId = $data->midea_id;
+            $mediaId = $data->media_id;
             return new Image($mediaId);
           }
 
