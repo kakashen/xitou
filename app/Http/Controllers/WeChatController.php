@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Log;
 
 class WeChatController extends Controller
@@ -12,7 +13,11 @@ class WeChatController extends Controller
 
     $app = app('wechat.official_account');
     $app->server->push(function ($message) {
-      return "欢迎关注 卡神！";
+      $count = DB::table('qiu_shi_bai_kes')->count();
+
+      $data = DB::table('qiu_shi_bai_kes')->find(rand(1, $count));
+      $content = $data->content;
+      return str_replace("<br>", "\n", $content);
     });
 
     $response = $app->server->serve();
