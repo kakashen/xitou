@@ -1,6 +1,5 @@
 <?php
 
-use App\Admin\Controllers\SporterController;
 use Illuminate\Routing\Router;
 
 Admin::registerAuthRoutes();
