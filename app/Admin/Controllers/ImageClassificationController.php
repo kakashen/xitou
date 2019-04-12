@@ -81,10 +81,10 @@ class ImageClassificationController extends Controller
     {
         $grid = new Grid(new ImageClassification);
 
-        $grid->id('Id');
-        $grid->name('Name');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->id('序号');
+        $grid->name('名称');
+        // $grid->created_at('Created at');
+        // $grid->updated_at('Updated at');
 
         return $grid;
     }
@@ -99,10 +99,10 @@ class ImageClassificationController extends Controller
     {
         $show = new Show(ImageClassification::findOrFail($id));
 
-        $show->id('Id');
-        $show->name('Name');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
+        $show->id('序号');
+        $show->name('名称');
+        // $show->created_at('Created at');
+        // $show->updated_at('Updated at');
 
         return $show;
     }
@@ -116,7 +116,7 @@ class ImageClassificationController extends Controller
     {
         $form = new Form(new ImageClassification);
 
-        $form->text('name', 'Name');
+        $form->text('name', '名称');
 
         return $form;
     }

@@ -110,6 +110,10 @@ class ImageController extends Controller
     {
         $form = new Form(new Image);
 
+        $form->select('image_classification_id', '图片分类')->options('/api/image_classifications');
+        $form->image('picture')->name(function ($file) {
+            dd($file);
+        });
 
 
         return $form;
