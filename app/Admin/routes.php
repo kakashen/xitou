@@ -12,4 +12,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
     $router->resource('sporter', SporterController::class);
+    $router->resource('sport', SportController::class);
+
 });
