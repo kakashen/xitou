@@ -82,12 +82,12 @@ class SportController extends Controller
         $grid = new Grid(new Sport);
 
         $grid->id('Id');
-        $grid->sporter_id('Sporter id');
-        $grid->date('Date');
-        $grid->recommend('Recommend');
-        $grid->result('Result');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->sporter_id('姓名');
+        $grid->date('日期');
+        $grid->recommend('推荐');
+        $grid->result('结果');
+        // $grid->created_at('Created at');
+        // $grid->updated_at('Updated at');
 
         return $grid;
     }
@@ -103,12 +103,12 @@ class SportController extends Controller
         $show = new Show(Sport::findOrFail($id));
 
         $show->id('Id');
-        $show->sporter_id('Sporter id');
-        $show->date('Date');
-        $show->recommend('Recommend');
-        $show->result('Result');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
+        $show->sporter_id('姓名');
+        $show->date('日期');
+        $show->recommend('推荐');
+        $show->result('结果');
+        // $show->created_at('Created at');
+        // $show->updated_at('Updated at');
 
         return $show;
     }
@@ -122,10 +122,10 @@ class SportController extends Controller
     {
         $form = new Form(new Sport);
 
-        $form->switch('sporter_id', 'Sporter id');
-        $form->date('date', 'Date')->default(date('Y-m-d'));
-        $form->text('recommend', 'Recommend');
-        $form->switch('result', 'Result')->default(2);
+        $form->select('sporter_id', '姓名')->options('/api/sporters');
+        $form->date('date', '日期')->default(date('Y-m-d'));
+        $form->text('recommend', '推荐');
+        $form->switch('result', '结果')->default(2);
 
         return $form;
     }

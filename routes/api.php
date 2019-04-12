@@ -1,5 +1,6 @@
 <?php
 
+use App\Sporter;
 use Illuminate\Http\Request;
 
 /*
@@ -15,4 +16,7 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::get('/sporters', function (Request $request) {
+    return Sporter::get(['id', 'name as text']);
 });
