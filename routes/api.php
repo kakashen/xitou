@@ -22,6 +22,6 @@ Route::get('/sporters', function (Request $request) {
     return Sporter::get(['id', 'name as text']);
 });
 
-Route::get('/image-classifications', function (Request $request) {
+Route::get('/image_classifications', function (Request $request) {
     return ImageClassification::get(['id', 'name as text']);
 });
