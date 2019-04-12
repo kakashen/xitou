@@ -15,6 +15,10 @@ class CreateSportsTable extends Migration
     {
         Schema::create('sports', function (Blueprint $table) {
             $table->increments('id');
+            $table->tinyInteger('sporter_id');
+            $table->date('date');
+            $table->string('recommend');
+            $table->tinyInteger('result')->default(2)->comment('0--红 1--黑 2--水');
             $table->timestamps();
         });
     }
