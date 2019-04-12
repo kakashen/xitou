@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\ImageClassification;
 use App\Sporter;
 use Illuminate\Http\Request;
 
@@ -22,5 +23,5 @@ Route::get('/sporters', function (Request $request) {
 });
 
 Route::get('/image-classifications', function (Request $request) {
-    return Sporter::get(['id', 'name as text']);
+    return ImageClassification::get(['id', 'name as text']);
 });
