@@ -101,7 +101,7 @@ class SportController extends Controller
                 2 => "<span class='btn btn-info'>水</span>"
             ];
             return $map[$result];
-        })->editable();
+        });
 
         // $grid->result('结果');
 
@@ -144,7 +144,13 @@ class SportController extends Controller
         $form->select('sporter_id', '姓名')->options('/api/sporters');
         $form->date('date', '日期')->default(date('Y-m-d'));
         $form->text('recommend', '推荐');
-        $form->switch('result', '结果')->default(2);
+        $states = [
+            ''  => ['value' => 0, 'text' => '红', 'color' => 'danger'],
+            'off' => ['value' => 1, 'text' => '黑', 'color' => 'warning'],
+        ];
+
+        $form->switch('result' , '结果')->states($states);
+        // $form->switch('result', '结果')->default(2);
 
         return $form;
     }
