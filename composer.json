@@ -12,6 +12,7 @@
         "encore/laravel-admin": "^1.6",
         "fideloper/proxy": "^4.0",
         "jaeger/querylist": "^4.1",
+        "laravel-admin-ext/grid-lightbox": "^1.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "overtrue/laravel-wechat": "~4.0"
