@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Model\Image;
 use App\Http\Controllers\Controller;
+use App\Model\ImageClassification;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -80,6 +81,9 @@ class ImageController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Image);
+        $grid->image_classification_id('分类')->display(function ($image_classification_id) {
+            return ImageClassification::find($image_classification_id);
+        });
 	    // $grid->path('图片')->image();
         // $grid->path('图片')->lightbox();
         $grid->path('图片')->gallery();

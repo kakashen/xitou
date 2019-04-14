@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Sport;
 use App\Http\Controllers\Controller;
+use App\Sporter;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -82,7 +83,9 @@ class SportController extends Controller
         $grid = new Grid(new Sport);
 
         $grid->id('Id');
-        $grid->sporter_id('姓名');
+        $grid->sporter_id('姓名')->display(function ($spoter_id) {
+            return Sporter::find($spoter_id);
+        });
         $grid->date('日期');
         $grid->recommend('推荐');
         $grid->result('结果');
