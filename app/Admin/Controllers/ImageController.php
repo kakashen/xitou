@@ -80,8 +80,9 @@ class ImageController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Image);
-	$grid->path('图片')->image();
-
+	    // $grid->path('图片')->image();
+        // $grid->path('图片')->lightbox();
+        $grid->path('图片')->gallery();
 
         return $grid;
     }
