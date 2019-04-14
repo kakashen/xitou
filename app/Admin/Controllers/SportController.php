@@ -145,7 +145,7 @@ class SportController extends Controller
         $form->date('date', '日期')->default(date('Y-m-d'));
         $form->text('recommend', '推荐');
         $states = [
-            ''  => ['value' => 0, 'text' => '红', 'color' => 'danger'],
+            'on'  => ['value' => 0, 'text' => '红', 'color' => 'danger'],
             'off' => ['value' => 1, 'text' => '黑', 'color' => 'warning'],
         ];
 
