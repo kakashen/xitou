@@ -82,7 +82,7 @@ class ImageController extends Controller
     {
         $grid = new Grid(new Image);
         $grid->image_classification_id('分类')->display(function ($image_classification_id) {
-            return ImageClassification::find($image_classification_id);
+            return ImageClassification::find($image_classification_id)->name ?? '未知';
         });
 	    // $grid->path('图片')->image();
         // $grid->path('图片')->lightbox();

@@ -84,7 +84,7 @@ class SportController extends Controller
 
         $grid->id('Id');
         $grid->sporter_id('姓名')->display(function ($spoter_id) {
-            return Sporter::find($spoter_id);
+            return Sporter::find($spoter_id)->name ?? '未知';
         });
         $grid->date('日期');
         $grid->recommend('推荐');
