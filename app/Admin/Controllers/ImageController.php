@@ -81,6 +81,11 @@ class ImageController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Image);
+        $grid->filter(function($filter){
+            $filter->equal('image_classification_id')->select('/api/image_classifications');
+            $filter->disableIdFilter();
+        });
+
         $grid->image_classification_id('分类')->display(function ($image_classification_id) {
             return ImageClassification::find($image_classification_id)->name ?? '未知';
         });
