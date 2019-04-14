@@ -88,7 +88,18 @@ class SportController extends Controller
         });
         $grid->date('日期');
         $grid->recommend('推荐');
-        $grid->result('结果');
+
+        $grid->result('结果')->display(function ($result) {
+            $map = [
+                0 => "<span class='btn btn-danger'>红</span>",
+                1 => "<span class='btn btn-inverse'>黑</span>",
+                2 => "<span class='btn btn-info'>水</span>"
+            ];
+            return $map[$result];
+        });
+
+        // $grid->result('结果');
+
         // $grid->created_at('Created at');
         // $grid->updated_at('Updated at');
 
