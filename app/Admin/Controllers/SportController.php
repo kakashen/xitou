@@ -82,6 +82,11 @@ class SportController extends Controller
     {
         $grid = new Grid(new Sport);
 
+        $grid->filter(function($filter){
+            $filter->equal('sporter_id')->select('/api/sporters');
+            $filter->disableIdFilter();
+        });
+
         $grid->id('Id');
         $grid->sporter_id('姓名')->display(function ($spoter_id) {
             return Sporter::find($spoter_id)->name ?? '未知';
@@ -96,7 +101,7 @@ class SportController extends Controller
                 2 => "<span class='btn btn-info'>水</span>"
             ];
             return $map[$result];
-        });
+        })->editable();
 
         // $grid->result('结果');
 
