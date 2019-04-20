@@ -96,9 +96,9 @@ class SportController extends Controller
 
         $grid->result('结果')->display(function ($result) {
             $map = [
-                0 => "<span class='danger'>红</span>",
-                1 => "<span class='success'>黑</span>",
-                2 => "<span class='info'>水</span>"
+                0 => "<span class='btn btn-danger'>红</span>",
+                1 => "<span class='btn btn-success'>黑</span>",
+                2 => "<span class='btn btn-info'>水</span>"
             ];
             return $map[$result];
         });
