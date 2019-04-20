@@ -83,7 +83,9 @@ class SportController extends Controller
         $grid = new Grid(new Sport);
 
         $grid->filter(function ($filter) {
-            $filter->equal('sporter_id')->select('/api/sporters');
+            $filter->equal('sporter_id', '作者')->select('/api/sporters');
+            $filter->between('date', '日期')->date();
+
             $filter->disableIdFilter();
         });
 
