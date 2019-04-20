@@ -82,7 +82,7 @@ class SportController extends Controller
     {
         $grid = new Grid(new Sport);
 
-        $grid->filter(function($filter){
+        $grid->filter(function ($filter) {
             $filter->equal('sporter_id')->select('/api/sporters');
             $filter->disableIdFilter();
         });
@@ -96,9 +96,9 @@ class SportController extends Controller
 
         $grid->result('结果')->display(function ($result) {
             $map = [
-                0 => "<span class='btn btn-danger'>红</span>",
-                1 => "<span class='btn btn-inverse'>黑</span>",
-                2 => "<span class='btn btn-info'>水</span>"
+                0 => "<span class='danger'>红</span>",
+                1 => "<span class='success'>黑</span>",
+                2 => "<span class='info'>水</span>"
             ];
             return $map[$result];
         });
@@ -145,11 +145,12 @@ class SportController extends Controller
         $form->date('date', '日期')->default(date('Y-m-d'));
         $form->text('recommend', '推荐');
         $states = [
-            'on'  => ['value' => 0, 'text' => '红', 'color' => 'danger'],
-            'off' => ['value' => 1, 'text' => '黑', 'color' => 'warning'],
+            2 => '水',
+            0 => '红',
+            1 => '黑',
         ];
 
-        $form->switch('result' , '结果')->states($states);
+        $form->select('result', '结果')->options($states);
         // $form->switch('result', '结果')->default(2);
 
         return $form;
