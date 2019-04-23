@@ -21,6 +21,12 @@ class WeChatController extends Controller
           return '收到事件消息';
           break;
         case 'text':
+            if ($message['Content'] == '二手房') {
+                $data = DB::table('second_houses')->orderBy('post_date')
+                    ->limit(10)->get(['id', 'phone', 'sum', 'community', 'area', 'region'])->toArray();
+                return implode('\\n', $data);
+            }
+
           if ($message['Content'] == '图片') {
             $count = DB::table('img_lists')->count();
             $data = DB::table('img_lists')->find(rand(1, $count));
