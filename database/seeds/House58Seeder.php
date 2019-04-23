@@ -31,16 +31,19 @@ class House58Seeder extends Seeder
         ];
 
         $range = '.house-list-wrap>li';
+        // 采集logr
+        $rule_logr = [
+            'logr' => ['.house-list-wrap>li', 'logr']
+        ];
+        $logr = $get->rules($rule_logr)->query()->getData();
 
         $data = $get->rules($rules)->range($range)->query()->getData();
 
-        // 采集logr
-        $logr = $get->rules(['logr' => ['.house-list-wrap>li', 'lorg']])->query()->getData()->all();
-
-        // 其他信息
         $all = $data->all();
 
         foreach ($all as $k => &$value) {
+            var_dump($logr[$k]);
+            return;
             $post_date = $this->getDateTime($logr[$k]);
             $value['post_date'] = $post_date ? $post_date : strtotime('-1 year') * 1000;
             $link = $value['link'];
@@ -80,6 +83,6 @@ class House58Seeder extends Seeder
     {
         $num = strpos($logr, '@postdate:');
 
-        return substr($logr, $num+10, 13) / 1000;
+        return substr($logr, $num + 10, 13) / 1000;
     }
 }
