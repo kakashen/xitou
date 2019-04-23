@@ -22,7 +22,7 @@ class WeChatController extends Controller
           break;
         case 'text':
             if ($message['Content'] == '二手房') {
-                $data = DB::table('second_houses')->orderBy('post_date')
+                $data = DB::table('second_houses')->orderBy('post_date', 'desc')
                     ->limit(10)->get(['id', 'phone', 'sum', 'community', 'area', 'region','post_date']);
 
                 $response = [];
@@ -31,7 +31,7 @@ class WeChatController extends Controller
                         $datum->area, $datum->region, date('Y-m-d H:i:s', $datum->post_date)]);
                     $response[] = $content;
                 }
-                return implode("\r\n", $response);
+                return implode("\r\n\r\n\r\n", $response);
             }
 
           if ($message['Content'] == '图片') {
