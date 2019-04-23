@@ -1,8 +1,8 @@
 <?php
 
+use App\SecondHouse;
 use Illuminate\Database\Seeder;
 use QL\QueryList;
-use Illuminate\Support\Facades\Cache;
 
 class House58Seeder extends Seeder
 {
@@ -34,10 +34,15 @@ class House58Seeder extends Seeder
 
         $data = $get->rules($rules)->range($range)->query()->getData();
 
+        // 采集logr
+        $logr = $get->rules(['logr' => ['.house-list-wrap>li', 'lorg']])->query()->getData()->all();
 
+        // 其他信息
         $all = $data->all();
 
-        foreach ($all as &$value) {
+        foreach ($all as $k => &$value) {
+            $post_date = $this->getDateTime($logr[$k]);
+            $value['post_date'] = $post_date;
             $link = $value['link'];
             $detail = QueryList::get($link);
             $detail_rules = [
@@ -47,8 +52,6 @@ class House58Seeder extends Seeder
                 'region' => ['.mr_10>a:eq(1)', 'text'],
                 // house-basic-item2
                 'area' => ['.main', 'text'],
-
-
             ];
 
             $user = $detail->rules($detail_rules)->query()->getData();
@@ -65,7 +68,18 @@ class House58Seeder extends Seeder
         }
         unset($value);
 
-        print_r($all);
+        SecondHouse::insert([$all]);
+    }
 
+    /**
+     * @param string $logr
+     * @return bool|string
+     * 获取时间戳 ms
+     */
+    private function getDateTime(string $logr)
+    {
+        $num = strpos($logr, '@postdate:');
+
+        return substr($logr, $num+10, 13);
     }
 }
