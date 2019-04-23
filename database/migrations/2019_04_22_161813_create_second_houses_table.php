@@ -19,7 +19,7 @@ class CreateSecondHousesTable extends Migration
             $table->string('phone', '11')->default('')->comment('手机号');
             $table->string('sum', '10')->default('')->comment('房屋总金额');
             $table->string('community', '100')->default('')->comment('小区名称');
-            $table->integer('area')->default(0)->comment('面积');
+            $table->string('area')->default('')->comment('面积');
             $table->string('name', '20')->default('')->comment('姓名');
             $table->string('region', '20')->default('')->comment('区域 -- 东港区.岚山区.市区.开发区等');
             $table->integer('post_date')->default(0)->comment('发布时间');

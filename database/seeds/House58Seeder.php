@@ -42,9 +42,7 @@ class House58Seeder extends Seeder
         $all = $data->all();
 
         foreach ($all as $k => &$value) {
-            var_dump($logr[$k]);
-            return;
-            $post_date = $this->getDateTime($logr[$k]);
+            $post_date = $this->getDateTime($logr[$k]['logr']);
             $value['post_date'] = $post_date ? $post_date : strtotime('-1 year') * 1000;
             $link = $value['link'];
             $detail = QueryList::get($link);
@@ -68,6 +66,7 @@ class House58Seeder extends Seeder
             $value['community'] = $community;
             $value['area'] = $area;
 
+            sleep(1);
         }
         unset($value);
 
@@ -83,6 +82,6 @@ class House58Seeder extends Seeder
     {
         $num = strpos($logr, '@postdate:');
 
-        return substr($logr, $num + 10, 13) / 1000;
+        return (int)substr($logr, $num + 10, 13) / 1000;
     }
 }
