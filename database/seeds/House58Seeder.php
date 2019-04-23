@@ -71,7 +71,7 @@ class House58Seeder extends Seeder
         }
         unset($value);
 
-        SecondHouse::insert([$all]);
+        SecondHouse::insert($all);
     }
 
     /**
