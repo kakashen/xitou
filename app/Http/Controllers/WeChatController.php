@@ -24,7 +24,7 @@ class WeChatController extends Controller
                     return '欢迎关注';
                     break;
                 case 'text':
-                    return $this->sendText($message['content']);
+                    return $this->sendText($message['Content']);
                     break;
                 case 'image':
                     return $this->sendImage();
@@ -67,7 +67,7 @@ class WeChatController extends Controller
 
     private function sendText(string $message)
     {
-        if ($message === '二手房') {
+        if ($message == '二手房') {
             $data = DB::table('second_houses')->orderBy('post_date', 'desc')
                 ->limit(10)->get(['id', 'phone', 'sum', 'community', 'area', 'region', 'post_date']);
 
@@ -80,11 +80,16 @@ class WeChatController extends Controller
             return implode("\r\n\r\n\r\n", $response);
         }
 
-        if ($message === '图片') {
+        if ($message == '图片') {
             $count = DB::table('img_lists')->count();
             $data = DB::table('img_lists')->find(rand(1, $count));
             $mediaId = $data->media_id;
             return new Image($mediaId);
         }
+
+        $count = DB::table('qiu_shi_bai_kes')->count();
+        $data = DB::table('qiu_shi_bai_kes')->find(rand(1, $count));
+        $content = $data->content;
+        return str_replace("<br>", "\n", $content);
     }
 }
