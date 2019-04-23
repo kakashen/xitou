@@ -23,14 +23,15 @@ class WeChatController extends Controller
         case 'text':
             if ($message['Content'] == '二手房') {
                 $data = DB::table('second_houses')->orderBy('post_date')
-                    ->limit(10)->get(['id', 'phone', 'sum', 'community', 'area', 'region']);
+                    ->limit(10)->get(['id', 'phone', 'sum', 'community', 'area', 'region','post_date']);
 
                 $response = [];
                 foreach ($data as $datum) {
-                    $content = implode('-', [$datum->id, $datum->phone, $datum->sum, $datum->community, $datum->area, $datum->region]);
+                    $content = implode('-', [$datum->phone, $datum->sum, $datum->community,
+                        $datum->area, $datum->region, date('Y-m-d H:i:s', $datum->post_date)]);
                     $response[] = $content;
                 }
-                return implode('\\n', $response);
+                return implode("\r\n", $response);
             }
 
           if ($message['Content'] == '图片') {
