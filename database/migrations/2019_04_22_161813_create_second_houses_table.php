@@ -23,6 +23,8 @@ class CreateSecondHousesTable extends Migration
             $table->string('name', '20')->default('')->comment('姓名');
             $table->string('region', '20')->default('')->comment('区域 -- 东港区.岚山区.市区.开发区等');
             $table->integer('post_date')->default(0)->comment('发布时间');
+            $table->string('from', '50')->default('')->comment('来源的平台 ...58');
+            $table->tinyInteger('type')->default(0)->comment('1 => 个人');
             $table->timestamps();
         });
     }
