@@ -42,7 +42,7 @@ class House58Seeder extends Seeder
 
         foreach ($all as $k => &$value) {
             $post_date = $this->getDateTime($logr[$k]);
-            $value['post_date'] = $post_date;
+            $value['post_date'] = $post_date ? $post_date : strtotime('-1 year') * 1000;
             $link = $value['link'];
             $detail = QueryList::get($link);
             $detail_rules = [
@@ -80,6 +80,6 @@ class House58Seeder extends Seeder
     {
         $num = strpos($logr, '@postdate:');
 
-        return substr($logr, $num+10, 13);
+        return substr($logr, $num+10, 13) / 1000;
     }
 }
