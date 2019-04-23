@@ -13,8 +13,9 @@ class House58List extends Seeder
      */
     public function run()
     {
-        $url = 'https://rizhao.58.com/rzkfq/ershoufang/h1/?PGTID=0d30000c-00c6-a843-6e3d-3c0044e82773&ClickID=1';
-
+        // $url = 'https://rizhao.58.com/rzkfq/ershoufang/h1/?PGTID=0d30000c-00c6-a843-6e3d-3c0044e82773&ClickID=1';
+        // 个人
+        $url = 'https://rizhao.58.com/ershoufang/0/?PGTID=0d30000c-00c6-9909-d709-83e17f5761d2&ClickID=1';
         $get = QueryList::get($url);
 
         // 定义采集规则
@@ -43,6 +44,8 @@ class House58List extends Seeder
             }
             $date_time = $this->getDateTime($logr[$k]['logr']);
             $value['post_date'] = $date_time;
+            $value['from'] = '58';
+            $value['type'] = 1;
             print_r($value);
         }
 
@@ -67,7 +70,8 @@ class House58List extends Seeder
      * @param $needle
      * @return bool
      */
-    private function startsWith($haystack, $needle){
+    private function startsWith($haystack, $needle): bool
+    {
         return strncmp($haystack, $needle, strlen($needle)) === 0;
     }
 }
