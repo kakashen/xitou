@@ -57,9 +57,9 @@ class House58Seeder extends Seeder
             $user = $detail->rules($detail_rules)->query()->getData();
             $phone = $community = $area = '';
             foreach ($user as $item) {
-                $phone = $item['phone'];
-                $community = $item['community'];
-                $area = $item['area'];
+                $phone = $item['phone'] ?? '';
+                $community = $item['community'] ?? '';
+                $area = $item['area'] ?? '';
             }
             $value['phone'] = $phone;
             $value['community'] = $community;
