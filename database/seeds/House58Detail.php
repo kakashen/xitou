@@ -20,8 +20,8 @@ class House58Detail extends Seeder
             $rules = [
                 // 'name' => ['meta', 'content'],
                 'phone' => ['.phone-num', 'text'],
-                'community' => ['.mr_10>a:eq(0)', 'text'],
-                'region' => ['.mr_10>a:eq(1)', 'text'],
+                'community' => ['.house-basic-item3>li:eq(0)>span:eq(1)', 'text'],
+                'region' => ['.house-basic-item3>li:eq(1)>span:eq(1)>a:eq(0)', 'text'],
                 'area' => ['.area>.main', 'text'],
             ];
 
