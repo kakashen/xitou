@@ -68,6 +68,11 @@ class WeChatController extends Controller
     private function sendText(string $message)
     {
         if ($message == '二手房') {
+            $list = new \House58List();
+            $list->run();
+            $detail = new \House58Detail();
+            $detail->run();
+
             $data = DB::table('second_houses')->orderBy('post_date', 'desc')
                 ->limit(10)->get(['id', 'phone', 'sum', 'community', 'area', 'region', 'post_date']);
 

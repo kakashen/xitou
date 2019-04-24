@@ -50,7 +50,17 @@ class House58List extends Seeder
         }
 
         unset($value);
-        SecondHouse::insert($all);
+//        SecondHouse::insert($all);
+        foreach ($all as $item) {
+            $link = $item['link'] ?? null;
+            if (!$link) continue;
+
+            unset($item['link']);
+
+            SecondHouse::updateOrCreate([
+                'link' => $link
+            ],$item);
+        }
     }
 
     /**
