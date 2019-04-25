@@ -26,6 +26,4 @@ Route::get('/image_classifications', function (Request $request) {
     return ImageClassification::get(['id', 'name as text']);
 });
 
-Route::get('/python', function (Request $request) {
-    return $request;
-});
+Route::get('/python', 'SecondHouseController@update');
