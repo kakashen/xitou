@@ -25,3 +25,7 @@ Route::get('/sporters', function (Request $request) {
 Route::get('/image_classifications', function (Request $request) {
     return ImageClassification::get(['id', 'name as text']);
 });
+
+Route::get('/python', function (Request $request) {
+    return $request;
+});
