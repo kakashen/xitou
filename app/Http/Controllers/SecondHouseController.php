@@ -74,7 +74,7 @@ class SecondHouseController extends Controller
         $all = $request->all();
         unset($all['link']);
 
-        $ret = $secondHouse->update(['link' => $link], $all);
+        $ret = $secondHouse->updateOrInsert(['link' => $link], $all);
 
         return  new Response($ret ? 'success': 'fail');
     }
