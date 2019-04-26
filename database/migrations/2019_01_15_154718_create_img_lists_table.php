@@ -17,7 +17,9 @@ class CreateImgListsTable extends Migration
       $table->increments('id');
       $table->string('url')->comment('微信图片地址');
       $table->string('media_id');
-      $table->string('qiu_url')->unique()->comment('糗百图片地址');
+      $table->string('origin_url')->default('')->comment('原始图片地址');
+      $table->string('name', 100)->default('')->comment('图片名称');
+      $table->integer('type')->default(0)->comment('图片类型 0 -- 全部');
       $table->timestamps();
     });
   }
