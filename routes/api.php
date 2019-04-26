@@ -28,3 +28,10 @@ Route::get('/image_classifications', function (Request $request) {
 
 Route::post('/python', 'SecondHouseController@update');
 Route::get('/get_link', 'SecondHouseController@getLink');
+
+// 图片列表处理路由组
+Route::prefix('image_list')->group(function () {
+    Route::get('/store', 'ImageListController@store'); // 保存图片
+
+
+});

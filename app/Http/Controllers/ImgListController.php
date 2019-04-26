@@ -33,9 +33,14 @@ class ImgListController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ImgList $imgList)
     {
-        //
+        $ret = $imgList->insert($request->all());
+        if ($ret) {
+            return response('插入成功');
+        }
+
+        return response('插入失败');
     }
 
     /**
