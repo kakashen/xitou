@@ -25,7 +25,7 @@ class WeChatSeeder extends Seeder
                 $name = $re['name'];
                 $url = $re['url'];
 
-                DB::table('image_lists')->updateOrInsert([
+                DB::table('img_lists')->updateOrInsert([
                    'media_id' => $media_id
                 ],['media_id' => $media_id, 'name' => $name, 'url' => $url]);
             }
