@@ -92,4 +92,10 @@ class SecondHouseController extends Controller
     {
         //
     }
+
+    public function getLink(SecondHouse $secondHouse)
+    {
+        $links = $secondHouse->select('link')->where('phone', '')->get();
+        return response($links);
+    }
 }
