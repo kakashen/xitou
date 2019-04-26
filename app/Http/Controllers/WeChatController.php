@@ -72,7 +72,7 @@ class WeChatController extends Controller
                 $list = new \House58List();
                 $list->run();
                 $detail = new \House58Detail();
-                $detail->run();
+                $detail->run(2);
             } catch (\Exception $e) {
                 Log::info($e->getMessage());
             }

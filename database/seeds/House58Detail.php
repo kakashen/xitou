@@ -11,9 +11,9 @@ class House58Detail extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(int $limit = 10000)
     {
-        $gets = SecondHouse::where('phone', '')->get();
+        $gets = SecondHouse::where('phone', '')->limit($limit)->get();
         $i = 0;
         foreach ($gets as $get) {
             $link = $get->link;
