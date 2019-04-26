@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use EasyWeChat\Kernel\Messages\Image;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Log;
 
@@ -90,10 +91,14 @@ class WeChatController extends Controller
         }
 
         if ($message == '图片') {
-            $count = DB::table('img_lists')->where('type', 0)->count();
-            $data = DB::table('img_lists')->find(rand(1, $count));
-            $mediaId = $data->media_id;
-            return new Image($mediaId);
+            $image_list_ids = Cache::get('image_list_ids');
+            if (!$image_list_ids) {
+                $ids = DB::table('img_lists')->where('type', 0)->get(['id'])->toArray();
+                Cache::add('image_list_ids', $ids, 1440);
+            }
+            $media_id = $image_list_ids[mt_rand(0, $image_list_ids)];
+
+            return new Image($media_id);
         }
 
         $count = DB::table('qiu_shi_bai_kes')->count();
