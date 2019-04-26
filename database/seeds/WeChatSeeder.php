@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class WeChatSeeder extends Seeder
 {
@@ -13,12 +14,24 @@ class WeChatSeeder extends Seeder
     {
         $app = app('wechat.official_account');
 
-        $result = $app->material->uploadImage("/path/to/your/image.jpg");
+        $material = $app->material;
 
+        $start = 0;
+        for ($i = 0; $i < 19; $i++) {
+            $res = $material->list('image', $start, 20);
 
-             /*{
-                "media_id":MEDIA_ID,
-                "url":URL
-             }*/
+            foreach ($res['item'] as $re) {
+                $media_id = $re['media_id'];
+                $name = $re['name'];
+                $url = $re['url'];
+
+                DB::table('image_lists')->updateOrInsert([
+                   'media_id' => $media_id
+                ],['media_id' => $media_id, 'name' => $name, 'url' => $url]);
+            }
+            $start += 20;
+            echo $start;
+        }
+
     }
 }
