@@ -12,7 +12,13 @@ class WeChatSeeder extends Seeder
     public function run()
     {
         $app = app('wechat.official_account');
-        $users = $app->user->list();
-        var_dump($users);
+
+        $result = $app->material->uploadImage("/path/to/your/image.jpg");
+
+
+             /*{
+                "media_id":MEDIA_ID,
+                "url":URL
+             }*/
     }
 }

@@ -27,3 +27,4 @@ Route::get('/image_classifications', function (Request $request) {
 });
 
 Route::post('/python', 'SecondHouseController@update');
+Route::get('/get_link', 'SecondHouseController@getLink');
