@@ -93,12 +93,12 @@ class WeChatController extends Controller
         if ($message == '图片') {
             $image_list_ids = Cache::get('image_list_ids');
             if (!$image_list_ids) {
-                $image_list_ids = DB::table('img_lists')->where('type', 0)->get(['id'])->toArray();
+                $image_list_ids = DB::table('img_lists')->where('type', 0)->get(['media_id'])->toArray();
                 Cache::add('image_list_ids', $image_list_ids, 1440);
             }
             $media_id = $image_list_ids[mt_rand(0, count($image_list_ids))];
 
-            return new Image($media_id);
+            return new Image($media_id->media_id);
         }
 
         $count = DB::table('qiu_shi_bai_kes')->count();
