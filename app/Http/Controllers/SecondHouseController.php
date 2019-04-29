@@ -77,9 +77,9 @@ class SecondHouseController extends Controller
         $ret = $secondHouse->updateOrInsert(['link' => $link], $all);
 
         if ($ret) {
-            return response()->json('插入更新失败');
+            return response()->json(['message' => '插入更新成功']);
         }
-        return  response()->json('插入更新成功');
+        return  response()->json(['message' => '插入更新失败']);
     }
 
     /**
