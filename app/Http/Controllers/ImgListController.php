@@ -35,7 +35,12 @@ class ImgListController extends Controller
      */
     public function store(Request $request, ImgList $imgList)
     {
-        $ret = $imgList->insert($request->all());
+        $ret = $imgList->insert([
+            'media_id' => $request->get('media_id'),
+            'url' => $request->get('url'),
+            'type' => (int)$request->get('type'),
+
+        ]);
         if ($ret) {
             return response('插入成功');
         }
