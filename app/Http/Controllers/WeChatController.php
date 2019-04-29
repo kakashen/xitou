@@ -89,6 +89,16 @@ class WeChatController extends Controller
             }
             return implode("\r\n\r\n\r\n", $response);
         }
+        if ($message == 2) {
+            $image_list_ids = Cache::get('image_list_ids');
+            if (!$image_list_ids) {
+                $image_list_ids = DB::table('img_lists')->where('type', 2)->get(['media_id'])->toArray();
+                Cache::add('image_list_ids', $image_list_ids, 1440);
+            }
+            $media_id = $image_list_ids[mt_rand(0, count($image_list_ids))];
+
+            return new Image($media_id->media_id);
+        }
 
         if ($message == '图片') {
             $image_list_ids = Cache::get('image_list_ids');
