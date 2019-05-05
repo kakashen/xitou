@@ -20,7 +20,7 @@ class WeChatController extends Controller
             switch ($message['MsgType']) {
                 case 'event':
                     if ($message['Event'] === 'subscribe') {
-                        return '欢迎私聊获取武功秘籍(NDD)~~~ \r\n 回复2, 获取珍藏动漫图片';
+                        return '欢迎私聊获取武功秘籍(NDD)~~~ \r\n 回复 动漫 , 获取珍藏动漫图片';
                     }
                     return '欢迎关注';
                     break;
@@ -89,7 +89,7 @@ class WeChatController extends Controller
             }
             return implode("\r\n\r\n\r\n", $response);
         }
-        if ($message == 2) {
+        if ($message == '动漫') {
             $image_list_ids = Cache::get('image_list_ids');
             if (!$image_list_ids) {
                 $image_list_ids = DB::table('img_lists')->where('type', 2)->get(['media_id'])->toArray();
