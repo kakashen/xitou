@@ -10,7 +10,7 @@ class AreaController extends Controller
 {
     public function store(Request $request, Area $area)
     {
-        $ret = $area->update($request->toArray());
+        $ret = $area->insert($request->toArray());
         Log::info(json_encode($ret));
         return response()->json(['data' => 'ok']);
     }
