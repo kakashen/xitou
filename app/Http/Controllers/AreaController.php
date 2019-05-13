@@ -12,6 +12,6 @@ class AreaController extends Controller
     {
         $ret = $area->update($request->toArray());
         Log::info(json_encode($ret));
-        return $ret;
+        return response()->json(['data' => 'ok']);
     }
 }
