@@ -89,7 +89,7 @@ class WeChatController extends Controller
             }
             return implode("\r\n\r\n\r\n", $response);
         }
-        if ($message == '动漫') {
+        if ($message) {
             $image_list_ids = Cache::get('image_list_ids');
             if (!$image_list_ids) {
                 $image_list_ids = DB::table('img_lists')->where('type', 2)->get(['media_id'])->toArray();
