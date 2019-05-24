@@ -26,13 +26,13 @@ class UploadWeChatImage extends Seeder
                 continue;
             }
 
-            $result['type'] = 2;
+            $result['type'] = 3;
             // var_dump(json_encode($result));return;
             $ret = $this->curl_request('http://www.xitou.online/api/image_list/store', $result, []);
             // var_dump($ret);
             if ($ret) {
                 try {
-                    copy($dir . $image, 'E:\python_code\image_done\\' . $image);
+                    // copy($dir . $image, 'E:\python_code\image_done\\' . $image);
                     unlink($dir . $image);//删除旧目录下的文件
                 } catch (Exception $e) {
                     echo $e->getMessage();
