@@ -98,6 +98,12 @@ class WeChatController extends Controller
             }
             return implode("\r\n\r\n\r\n", $response);
         }
+
+        if ($message == '你懂得') {
+            $data = DB::table('img_lists')->select(['media_id'])->where('type', 3)->inRandomOrder()->first();
+            return new Image($data->media_id);
+        }
+
         if ($message) {
             $image_list_ids = Cache::get('image_list_ids');
             if (!$image_list_ids) {
