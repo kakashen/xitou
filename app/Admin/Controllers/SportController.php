@@ -94,9 +94,9 @@ class SportController extends Controller
             return Sporter::find($spoter_id)->name ?? '未知';
         });
         $grid->date('日期');
-        $grid->recommend('推荐');
-        $grid->amount('金额');
-        $grid->water('水位');
+        $grid->recommend('推荐')->editable();
+        $grid->amount('金额')->editable();
+        $grid->water('水位')->editable();
 
         $grid->result('结果')->display(function ($result) {
             $map = [
