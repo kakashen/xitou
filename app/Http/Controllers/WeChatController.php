@@ -17,9 +17,13 @@ class WeChatController extends Controller
         $app->server->push(function ($message) {
             $openid = $message['FromUserName'] ?? null;
             if ($openid) {
-                DB::table('we_chat_users')->updateOrInsert([
-                    'openid' => $openid,
-                ]);
+                try {
+                    DB::table('we_chat_users')->updateOrInsert([
+                        'openid' => $openid,
+                    ]);
+                } catch (\Exception $e) {
+                    Log::info($e->getMessage());
+                }
             }
 
             switch ($message['MsgType']) {
