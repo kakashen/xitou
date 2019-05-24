@@ -26,7 +26,7 @@ class CreateWeChatUsersTable extends Migration
             $table->string('unionid')->default('');
             $table->string('remark')->default('');
             $table->integer('groupid')->default(0);
-            $table->json('tagid_list')->nullable();
+            $table->json('tagid_list')->nullable()->default(null);
             $table->string('subscribe_scene')->default('');
             $table->integer('qr_scene')->default(0);
             $table->string('qr_scene_str')->default('');
