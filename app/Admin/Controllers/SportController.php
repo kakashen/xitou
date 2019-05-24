@@ -95,6 +95,8 @@ class SportController extends Controller
         });
         $grid->date('日期');
         $grid->recommend('推荐');
+        $grid->amount('金额');
+        $grid->water('水位');
 
         $grid->result('结果')->display(function ($result) {
             $map = [
@@ -127,6 +129,8 @@ class SportController extends Controller
         $show->sporter_id('姓名');
         $show->date('日期');
         $show->recommend('推荐');
+        $show->amount('金额');
+        $show->water('水位');
         $show->result('结果');
         // $show->created_at('Created at');
         // $show->updated_at('Updated at');
@@ -146,10 +150,12 @@ class SportController extends Controller
         $form->select('sporter_id', '姓名')->options('/api/sporters');
         $form->date('date', '日期')->default(date('Y-m-d'));
         $form->text('recommend', '推荐');
+        $form->text('amount', '金额');
+        $form->text('water', '水位');
         $states = [
-            2 => '水',
             0 => '红',
             1 => '黑',
+            2 => '水',
         ];
 
         $form->select('result', '结果')->options($states);
