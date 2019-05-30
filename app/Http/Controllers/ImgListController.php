@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ImgListController extends Controller
 {
+    private $img_list
+    public function __construct(ImgList $imgList)
+    {
+        $this->img_list = $imgList;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -91,5 +96,11 @@ class ImgListController extends Controller
     public function destroy(ImgList $imgList)
     {
         //
+    }
+
+    public function getImages()
+    {
+        $lists = $this->img_list->limit(10)->get();
+        return response()->json($lists);
     }
 }
