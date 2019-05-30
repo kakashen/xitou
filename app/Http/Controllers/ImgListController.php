@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ImgListController extends Controller
 {
-    private $img_list
+    private $img_list;
     public function __construct(ImgList $imgList)
     {
         $this->img_list = $imgList;
