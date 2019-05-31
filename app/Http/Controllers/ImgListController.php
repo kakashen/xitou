@@ -103,4 +103,9 @@ class ImgListController extends Controller
         $lists = $this->img_list->limit(10)->get();
         return response()->json($lists);
     }
+
+    public function upload(Request $request)
+    {
+        return $request->file('file')->store('images');
+    }
 }

@@ -33,6 +33,8 @@ Route::get('/get_link', 'SecondHouseController@getLink');
 Route::prefix('image_list')->group(function () {
     Route::post('/store', 'ImgListController@store'); // 保存图片
     Route::post('/get_images', 'ImgListController@getImages'); // 获取图片
+    Route::post('/upload', 'ImgListController@upload'); // 上传图片
+
 
 
 });
