@@ -104,8 +104,13 @@ class ImgListController extends Controller
         return response()->json($lists);
     }
 
-    public function upload(Request $request)
+    public function upload(Request $request, ImgList $imgList)
     {
-        return $request->file('file')->store('images');
+        $path = $request->file('file')->store('images');
+
+        $request->media_id = '';
+        $request->url = $path;
+        $request->type = 4;
+        return $this->store($request, $imgList);
     }
 }
