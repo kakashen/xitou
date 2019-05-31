@@ -39,8 +39,8 @@ class UploadWeChatImage extends Seeder
                 }
                 echo 1, "\r\n";
             }
-            file_put_contents('result.html', $ret, FILE_APPEND);
-            file_put_contents('result.csv', $image, FILE_APPEND);
+            file_put_contents('result.html', $ret . PHP_EOL, FILE_APPEND);
+            file_put_contents('result.csv', $image . PHP_EOL, FILE_APPEND);
 
         }
 
