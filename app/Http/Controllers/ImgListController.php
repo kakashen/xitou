@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 class ImgListController extends Controller
 {
     private $img_list;
+
     public function __construct(ImgList $imgList)
     {
         $this->img_list = $imgList;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +37,7 @@ class ImgListController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, ImgList $imgList)
@@ -56,7 +58,7 @@ class ImgListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ImgList  $imgList
+     * @param \App\ImgList $imgList
      * @return \Illuminate\Http\Response
      */
     public function show(ImgList $imgList)
@@ -67,7 +69,7 @@ class ImgListController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ImgList  $imgList
+     * @param \App\ImgList $imgList
      * @return \Illuminate\Http\Response
      */
     public function edit(ImgList $imgList)
@@ -78,8 +80,8 @@ class ImgListController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ImgList  $imgList
+     * @param \Illuminate\Http\Request $request
+     * @param \App\ImgList $imgList
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ImgList $imgList)
@@ -90,7 +92,7 @@ class ImgListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ImgList  $imgList
+     * @param \App\ImgList $imgList
      * @return \Illuminate\Http\Response
      */
     public function destroy(ImgList $imgList)
@@ -108,9 +110,15 @@ class ImgListController extends Controller
     {
         $path = $request->file('file')->store('images');
 
-        $request->media_id = '';
-        $request->url = $path;
-        $request->type = 4;
-        return $this->store($request, $imgList);
+        $ret = $this->img_list->insert([
+            'media_id' => '',
+            'url' => $path,
+            'type' => 4,
+        ]);
+        if ($ret) {
+            return response('插入成功');
+        }
+
+        return response('插入失败');
     }
 }
