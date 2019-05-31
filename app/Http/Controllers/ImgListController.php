@@ -102,7 +102,7 @@ class ImgListController extends Controller
 
     public function getImages()
     {
-        $lists = $this->img_list->limit(10)->get();
+        $lists = $this->img_list->where('type', 4)->limit(100)->get();
         return response()->json($lists);
     }
 
