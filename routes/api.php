@@ -42,6 +42,6 @@ Route::prefix('image_list')->group(function () {
 // 图片列表处理路由组
 Route::prefix('area')->group(function () {
     Route::post('/store', 'AreaController@store');
-    Route::post('/list', 'AreaController@list');
+    Route::get('/list', 'AreaController@list')->middleware('cors');
 
 });
