@@ -41,6 +41,7 @@ Route::prefix('image_list')->group(function () {
 
 // 图片列表处理路由组
 Route::prefix('area')->group(function () {
-    Route::post('/store', 'AreaController@store'); // 保存图片
+    Route::post('/store', 'AreaController@store');
+    Route::post('/list', 'AreaController@list');
 
 });

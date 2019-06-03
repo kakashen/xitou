@@ -8,10 +8,21 @@ use Illuminate\Support\Facades\Log;
 
 class AreaController extends Controller
 {
-    public function store(Request $request, Area $area)
+    private $area;
+    public function __construct(Area $area)
     {
-        $ret = $area->insert($request->toArray());
+        $this->area = $area;
+    }
+    public function store(Request $request)
+    {
+        $ret = $this->area->insert($request->toArray());
         Log::info(json_encode($ret));
         return response()->json(['data' => 'ok']);
+    }
+
+    public function list()
+    {
+        $data = $this->area->get();
+        return response()->json(['data' => $data]);
     }
 }
