@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::get('/wxmsg', 'WeChatController@checkSignature');
 
 Route::any('/wechat', 'WeChatController@serve');
+
+Route::any('/chat', 'ChatController@insert');
