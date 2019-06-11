@@ -27,3 +27,11 @@ class Chat extends MongodbDefault
         }
     }
 }
+
+
+class ChatInfo
+{
+    public $openid;
+    public $type;
+    public $content;
+}
