@@ -32,7 +32,7 @@ class WeChatController extends Controller
                     $info = new ChatInfo();
                     $info->openid = $openid;
                     $info->type = $message['MsgType'];
-                    $info->content = $message['MsgType'] = 'text' ? $message['Content'] : '';
+                    $info->content = $message['MsgType'] === 'text' ? $message['Content'] : '';
                     event(new ChatLog($info));
                 } catch (\Exception $e) {
                     Log::info('weChatLog event ------ ' . $e->getMessage());
