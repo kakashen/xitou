@@ -15,7 +15,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class ChatLog
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $info;
     /**
      * Create a new event instance.
      *
@@ -23,7 +23,7 @@ class ChatLog
      */
     public function __construct(ChatInfo $info)
     {
-        //
+        $this->info = $info;
     }
 
     /**
