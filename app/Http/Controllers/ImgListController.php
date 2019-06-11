@@ -113,7 +113,7 @@ class ImgListController extends Controller
         $ret = $this->img_list->insert([
             'media_id' => '',
             'url' => $path,
-            'type' => 4,
+            'type' => 5,
         ]);
         if ($ret) {
             return response('插入成功');
