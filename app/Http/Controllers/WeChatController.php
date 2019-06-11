@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ChatInfo;
+use App\Events\ChatLog;
 use EasyWeChat\Kernel\Messages\Image;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +25,18 @@ class WeChatController extends Controller
                     ]);
                 } catch (\Exception $e) {
                     Log::info($e->getMessage());
+                }
+
+
+                try {// 消息事件
+                    $info = new ChatInfo();
+                    $info->openid = $openid;
+                    $info->type = $message['MsgType'];
+                    $info->content = $message['MsgType'] = 'text' ? $message['Content'] : '';
+                    event(new ChatLog($info));
+                } catch (\Exception $e) {
+                    Log::info('weChatLog event ------ ' . $e->getMessage());
+
                 }
             }
 

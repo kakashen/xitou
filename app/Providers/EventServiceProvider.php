@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\HousePublish' => [
             'App\Listeners\SendHousePublishNotification',
         ],
+        'App\Events\ChatLog' => [
+            'App\Listeners\ChatLogNotification',
+        ],
     ];
 
     /**
