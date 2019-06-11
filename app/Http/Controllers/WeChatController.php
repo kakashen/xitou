@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Chat;
 use App\ChatInfo;
 use App\Events\ChatLog;
 use EasyWeChat\Kernel\Messages\Image;
@@ -29,11 +30,11 @@ class WeChatController extends Controller
 
 
                 try {// 消息事件
-                    $info = new ChatInfo();
-                    $info->openid = $openid;
-                    $info->type = $message['MsgType'];
-                    $info->content = $message['MsgType'] === 'text' ? $message['Content'] : '';
-                    event(new ChatLog($info));
+                    $info['openid'] = $openid;
+                    $info['type'] = $message['MsgType'];
+                    $info['content'] = $message['MsgType'] === 'text' ? $message['Content'] : '';
+                    $chat = new Chat();
+                    $chat->insert($info);
                 } catch (\Exception $e) {
                     Log::info('weChatLog event ------ ' . $e->getMessage());
 
