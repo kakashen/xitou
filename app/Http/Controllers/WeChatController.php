@@ -33,6 +33,7 @@ class WeChatController extends Controller
                     $info['openid'] = $openid;
                     $info['type'] = $message['MsgType'];
                     $info['content'] = $message['MsgType'] === 'text' ? $message['Content'] : '';
+		    $info['sendAt'] = date('Y-m-d H:i:s');
                     $chat = new Chat();
                     $chat->insert($info);
                 } catch (\Exception $e) {
