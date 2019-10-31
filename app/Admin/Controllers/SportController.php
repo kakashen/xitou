@@ -81,7 +81,7 @@ class SportController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Sport);
-	$grid->model()->orderBy('id', 'desc');
+	$grid->model()->orderBy('date', 'desc');
 
         $grid->filter(function ($filter) {
             $filter->equal('sporter_id', '作者')->select('/api/sporters');
