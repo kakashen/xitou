@@ -129,4 +129,10 @@ class SunnyController extends Controller
         Log::info($ret);
 
     }
+
+    public function infos()
+    {
+        $lists = StudentInfo::get();
+        return view('infos', ['lists' => $lists]);
+    }
 }
