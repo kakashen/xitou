@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>软件1班信息表</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -24,8 +24,8 @@
 </head>
 <body>
 @foreach($lists as $list)
-    <h2>传智学员信息登记表</h2>
-    <p><span>用户登录名：</span>{{$list->username}}</p>
+    <h2>软件1班信息记录表</h2>
+    <p><span>用户登录名：</span>{{$list->user_name}}</p>
     <p><span>真实姓名：</span>{{$list->real_name}}</p>
     <p><span>真实年龄：</span>{{$list->real_age}}</p>
     <p><span>电子邮箱：</span>{{$list->myemail}}
