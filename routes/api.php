@@ -45,3 +45,20 @@ Route::prefix('area')->group(function () {
     Route::get('/list', 'AreaController@list')->middleware('cors');
 
 });
+
+// 阳光屋
+Route::prefix('sunny')->group(function () {
+    Route::post('kids', 'SunnyController@kids');
+    Route::post('detail', 'SunnyController@detail');
+    Route::post('wxLogin', 'SunnyController@wxLogin');
+
+    Route::post('vote', 'SunnyController@vote');
+
+});
+
+// 软件1班
+Route::prefix('soft')->group(function () {
+    Route::post('info', 'SunnyController@info');
+
+
+});
